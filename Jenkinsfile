@@ -75,8 +75,8 @@ pipeline {
             steps {
 
                 script {
-
-                    staticcodeAnalysis()
+                    def SonarQubecredentialsId = 'MysonarToken'
+                    staticcodeAnalysis(SonarQubecredentialsId)
 
                 }
             }
