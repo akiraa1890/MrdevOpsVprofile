@@ -2,9 +2,14 @@
 pipeline {
     agent any 
 
-    stages {
+    parameters{
+        choice(name: 'action', choices: 'create\ndelete', description: 'Choose Create/Destroy')
+    }
 
+    stages {
+       
         stage('Git checkout'){
+             when { expression { params.action == 'create' }}
 
             steps {
 
@@ -21,6 +26,7 @@ pipeline {
         }
 
         stage('mvn Unit test'){
+             when { expression { params.action == 'create' }}
 
             steps {
 
@@ -34,6 +40,7 @@ pipeline {
         }
 
         stage('mvn integration test'){
+             when { expression { params.action == 'create' }}
 
             steps {
 
@@ -45,6 +52,38 @@ pipeline {
             }
 
         }
+
+
+        stage('mvn checkstyle'){
+             when { expression { params.action == 'create' }}
+
+            steps {
+
+                script {
+
+                    mvncheckStyle()
+
+                }
+            }
+
+        }
+
+
+        stage('static code analysis'){
+             when { expression { params.action == 'create' }}
+
+            steps {
+
+                script {
+
+                    staticcodeAnalysis()
+
+                }
+            }
+
+        }
+
+
 
     }
 }
