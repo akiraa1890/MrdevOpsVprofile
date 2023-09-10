@@ -20,13 +20,26 @@ pipeline {
 
         }
 
-        stage('Git Unit test'){
+        stage('mvn Unit test'){
 
             steps {
 
                 script {
 
-                    gitunitTest()
+                    mvnunitTest()
+
+                }
+            }
+
+        }
+
+        stage('mvn integration test'){
+
+            steps {
+
+                script {
+
+                    mvnintegrationTest()
 
                 }
             }
