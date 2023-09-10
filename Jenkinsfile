@@ -20,5 +20,18 @@ pipeline {
 
         }
 
+        stage('Git Unit test'){
+
+            steps {
+
+                script {
+
+                    gitunitTest()
+
+                }
+            }
+
+        }
+
     }
 }
