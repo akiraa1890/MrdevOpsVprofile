@@ -83,6 +83,21 @@ pipeline {
 
         }
 
+                stage('quality gate analysis'){
+             when { expression { params.action == 'create' }}
+
+            steps {
+
+                script {
+                    def SonarQubecredentialsId = 'MysonarToken'
+                    qualityGate(SonarQubecredentialsId)
+
+                }
+            }
+
+        }
+
+
 
 
     }
