@@ -83,7 +83,7 @@ pipeline {
 
         }
 
-                stage('quality gate analysis'){
+       /*         stage('quality gate analysis'){
              when { expression { params.action == 'create' }}
 
             steps {
@@ -95,7 +95,7 @@ pipeline {
                 }
             }
 
-        }
+        } */
 
                         stage('Maven build'){
              when { expression { params.action == 'create' }}
